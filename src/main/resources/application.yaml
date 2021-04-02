@@ -1,0 +1,14 @@
+spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27000
+      database: wishlist
+
+app:
+  resttemplate:
+    timeout: 30000
+
+info:
+  build:
+    version: '@project.version@'
