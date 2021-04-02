@@ -31,8 +31,4 @@ public class ProductDto {
     @ApiModelProperty( required = true )
     @NotBlank( message = "{required.field}" )
     private String type;
-
-    @ApiModelProperty( required = true )
-    @NotBlank( message = "{required.field}" )
-    private String userIdentification;
 }
