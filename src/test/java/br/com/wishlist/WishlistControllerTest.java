@@ -25,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class WishlistControllerTest {
 
     private static final String ADD_PRODUCT_PATH = "/wishlist";
+    private static final String DELETE_PRODUCT_PATH = "/{id}";
 
     @Autowired
     public MockMvc mockMvc;
@@ -43,6 +44,14 @@ public class WishlistControllerTest {
         mockMvc.perform( post( ADD_PRODUCT_PATH )
                 .contentType( MediaType.APPLICATION_JSON )
                 .header( "Identification", "36768246879" )
+                .content( objectToJson( createRequestMockDto() ) ) )
+                .andExpect( status().is2xxSuccessful() );
+    }
+
+    @Test
+    public void deleteProductSuccess() throws Exception {
+        mockMvc.perform( post( ADD_PRODUCT_PATH )
+                .contentType( MediaType.APPLICATION_JSON )
                 .content( objectToJson( createRequestMockDto() ) ) )
                 .andExpect( status().is2xxSuccessful() );
     }

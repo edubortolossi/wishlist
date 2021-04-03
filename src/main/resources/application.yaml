@@ -1,8 +1,7 @@
 spring:
   data:
     mongodb:
-      host: localhost
-      port: 27000
+      port: 57041
       database: wishlist
 
 app:

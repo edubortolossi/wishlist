@@ -35,12 +35,8 @@ public class WishlistController {
     }
 
     @DeleteMapping( value = "/{id}" )
-    public ResponseEntity< String > deleteProduct( @RequestHeader("Identification") String userIdentification,
-                                                   @PathVariable( value = "id" ) Long idProduct ) {
-
-//        campanhaService.deletar( id );
-
-        return ResponseEntity.ok( "Producto retirado da Lista de Desejos com Sucesso" );
+    public ResponseEntity< String > deleteProduct( @PathVariable( value = "id" ) String idProduct ) {
+      return wishlistService.delete( idProduct );
     }
 
     @GetMapping
