@@ -5,6 +5,7 @@ import br.com.wishlist.dto.ProductDto;
 import br.com.wishlist.repository.WishlistRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -69,6 +70,12 @@ public class WishlistControllerTest {
                     .description( "video Game " + i ).build() );
         }
     }
+
+    @After
+    public void tearDown() {
+        wishlistRepository.deleteAll();
+    }
+
 
     private ProductDto createRequestMockDto() {
         return ProductDto.builder()
