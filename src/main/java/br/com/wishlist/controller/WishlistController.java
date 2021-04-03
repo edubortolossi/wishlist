@@ -3,6 +3,8 @@ package br.com.wishlist.controller;
 import br.com.wishlist.domain.Product;
 import br.com.wishlist.dto.ProductDto;
 import br.com.wishlist.service.WishlistService;
+import br.com.wishlist.utils.BadRequestException;
+import br.com.wishlist.utils.NoContentException;
 import io.swagger.annotations.ApiImplicitParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -29,24 +31,24 @@ public class WishlistController {
     @PostMapping
     @ApiImplicitParam( name = "Identification", value = "Identification", paramType = "header", required = true)
     public ResponseEntity< Product > saveProduct( @RequestHeader("Identification") String userIdentification,
-                                                  @RequestBody ProductDto product ) {
+                                                  @RequestBody ProductDto product ) throws BadRequestException {
         return ResponseEntity.status( HttpStatus.CREATED ).body( wishlistService.save( product, userIdentification ) );
     }
 
     @DeleteMapping( value = "/{id}" )
-    public ResponseEntity< String > deleteProduct( @PathVariable( value = "id" ) String idProduct ) {
+    public ResponseEntity< String > deleteProduct( @PathVariable( value = "id" ) String idProduct ) throws NoContentException {
        wishlistService.delete( idProduct );
        return ResponseEntity.ok( "Produto retirado da Lista de Desejos com Sucesso" );
     }
 
     @GetMapping
-    public ResponseEntity< List< Product > > findAllProducts( @RequestHeader("Identification") String userIdentification ) {
+    public ResponseEntity< List< Product > > findAllProducts( @RequestHeader("Identification") String userIdentification ) throws NoContentException {
         return ResponseEntity.ok( wishlistService.listAllProductsByUser( userIdentification ) );
     }
 
     @GetMapping( value = "/{name}" )
     public ResponseEntity< List< Product > > findProductByName( @RequestHeader("Identification") String userIdentification,
-                                                                        @PathVariable( value = "name" ) String nameProduct  ) {
+                                                                        @PathVariable( value = "name" ) String nameProduct  ) throws NoContentException {
         return ResponseEntity.ok( wishlistService.listProductByUser( userIdentification, nameProduct ) );
     }
 
