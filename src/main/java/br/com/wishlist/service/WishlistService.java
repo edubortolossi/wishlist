@@ -7,6 +7,7 @@ import br.com.wishlist.repository.WishlistRepository;
 import br.com.wishlist.utils.BadRequestException;
 import br.com.wishlist.utils.NoContentException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -38,6 +39,7 @@ public class WishlistService {
         return true;
     }
 
+    @Cacheable
     public List< Product > listAllProductsByUser( String userIdentification ) throws NoContentException {
         final List< Product > products = wishlistRepository.findByUserIdentification( userIdentification );
         if ( products.size() > 0 ) {
