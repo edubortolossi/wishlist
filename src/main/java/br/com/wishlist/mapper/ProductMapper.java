@@ -7,7 +7,7 @@ import java.math.BigDecimal;
 
 public class ProductMapper {
 
-    public static Product createProductDTOToEntity( ProductDto productDto, String userIdentification ) {
+    public static Product dtoToEntity( ProductDto productDto, String userIdentification ) {
 
         return Product.builder()
                 .description( productDto.getDescription() )

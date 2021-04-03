@@ -2,7 +2,6 @@ package br.com.wishlist.controller;
 
 import br.com.wishlist.domain.Product;
 import br.com.wishlist.dto.ProductDto;
-import br.com.wishlist.dto.ProductResponse;
 import br.com.wishlist.service.WishlistService;
 import io.swagger.annotations.ApiImplicitParam;
 import org.springframework.beans.factory.annotation.Autowired;
