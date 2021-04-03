@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Set;
+import java.util.List;
 
 @RestController
 @RequestMapping( value = "/wishlist", produces = MediaType.APPLICATION_JSON_VALUE )
@@ -36,21 +36,19 @@ public class WishlistController {
 
     @DeleteMapping( value = "/{id}" )
     public ResponseEntity< String > deleteProduct( @PathVariable( value = "id" ) String idProduct ) {
-      return wishlistService.delete( idProduct );
+       wishlistService.delete( idProduct );
+       return ResponseEntity.ok( "Produto retirado da Lista de Desejos com Sucesso" );
     }
 
     @GetMapping
-    public ResponseEntity< Set< ProductResponse > > findAllProducts( @RequestHeader("Identification") String userIdentification ) {
-
-//        return ResponseEntity.ok( campanhaService.listar() );
-        return null;
+    public ResponseEntity< List< Product > > findAllProducts( @RequestHeader("Identification") String userIdentification ) {
+        return ResponseEntity.ok( wishlistService.listAllProductsByUser( userIdentification ) );
     }
 
     @GetMapping( value = "/{name}" )
-    public ResponseEntity< Set< ProductResponse > > findProductByName( @RequestHeader("Identification") String userIdentification,
-                                                                        @PathVariable( value = "name" ) Long nameProduct  ) {
-//        return ResponseEntity.ok( campanhaService.listar() );
-        return null;
+    public ResponseEntity< List< Product > > findProductByName( @RequestHeader("Identification") String userIdentification,
+                                                                        @PathVariable( value = "name" ) String nameProduct  ) {
+        return ResponseEntity.ok( wishlistService.listProductByUser( userIdentification, nameProduct ) );
     }
 
 

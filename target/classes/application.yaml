@@ -1,0 +1,13 @@
+spring:
+  data:
+    mongodb:
+      port: 57041
+      database: wishlist
+
+app:
+  resttemplate:
+    timeout: 30000
+
+info:
+  build:
+    version: '1.0-SNAPSHOT'
